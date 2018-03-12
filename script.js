@@ -1,61 +1,66 @@
-var MovieList = React.createClass ({
-    propTypes:{   
-    movieList: React.PropTypes.object.isRequired,
+var movie = [
+    {
+    id: 1,
+    title: 'Harry Potter',
+    desc: 'Film o czarodzieju',
     },
-        render: function(){
-            return {
-                React.createElement('h1', {MovieList: title}, this.pros.title),
-               
-                
-            }
-        }
-});
-var element = React.createElement(MovieList, {movie}, )
+    {
+    id: 2,
+    title: 'Król Lew',
+    desc: 'Film o królu sawanny',
+    }
+];
+
+var MovieList = React.createClass ({
+    propTypes: {   
+    movieList: React.PropTypes.array.isRequired,
+    },
     
-var Movie =  React.createClass (
-    propTypes {
+        render: function(){
+            var elements = this.props.movieList.map(function(movie) {
+                return React.createElement(Movie, {movie: movie, key: movie.id});
+            });
+            return  React.createElement('ul', {}, telements);
+    }
+});
+    
+var Movie =  React.createClass ({
+    propTypes: {
     movie: React.PropTypes.object.isRequired,
     },
-   render: function() ({
+    
+   render: function() {
     return (
-    React.createElement('ul', {},
-    React.createElement('li', {key:movie.id}, this.props.movie.id),
-    React.createElement('p', {desc=movie_desc}, this.props.desc)
+    React.createElement('li', {},
+    React.createElement(MovieTitle, {MovieTitle: this.props.movie.title}),
+                        React.createElement(MovieDescription, {movieDescription: this.props.movie.desc})
             )
         );
     }
 });
-var element = React.createElement(Movie, {key:movie_id, movie_desc},);
 
 var MovieTitle = React.createClass({
-    proppTypes {
-    MovieTitle: React.PropTypes.object.isRequired,
+    propTypes: {
+    MovieTitle: React.PropTypes.string.isRequired,
 },
+    
         render: function(){
-        return (
-    React.createElement('h2', (title=movie_title), this.props.title)
-            )
+        return React.createElement('h2', {}this.props.movieTitle);
+            
 }                                 
 });
-var element = React.cretateElement(MovieTitle,{movie_title}, this.props.movie.title);
 
 var MovieDescription = React.createClass({
-    propTypes {
-    MovieDescription = React.PropTypes.object.isRequired,
+    propTypes: {
+    MovieDescription: React.PropTypes.string.isRequired,
 },
+    
         render: function() {
-            return (
-                React.createElement(MovieDescription, {movie_desc}, this.props.movie.desc)
-        );
+            return React.createElement('p', {}, this.props.movieDescription);
     }
-})
+});
 
-    var movie ={
-        id: 1,
-        title: 'Harry Potter',
-        desc: 'Film o czarodzieju',
-       
-        id: 2,
-        title: 'Król Lew',
-        desc: 'Film o królu sawanny',
-        }
+ReactDOM.render(
+    React.createElement(MovieList, {movieList: movies}),
+    document.getElementById('app')
+);
