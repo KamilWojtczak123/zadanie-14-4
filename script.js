@@ -1,4 +1,4 @@
-var movie = [
+var movies = [
     {
     id: 1,
     title: 'Harry Potter',
@@ -20,7 +20,7 @@ var MovieList = React.createClass ({
             var elements = this.props.movieList.map(function(movie) {
                 return React.createElement(Movie, {movie: movie, key: movie.id});
             });
-            return  React.createElement('ul', {}, telements);
+            return  React.createElement('ul', {}, elements);
     }
 });
     
@@ -45,7 +45,7 @@ var MovieTitle = React.createClass({
 },
     
         render: function(){
-        return React.createElement('h2', {}this.props.movieTitle);
+        return React.createElement('h2', {}, this.props.movieTitle);
             
 }                                 
 });
